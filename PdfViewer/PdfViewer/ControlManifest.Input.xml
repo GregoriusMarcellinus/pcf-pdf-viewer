@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <control namespace="Grey" constructor="PdfViewer" version="1.0.13" display-name-key="PdfViewer" description-key="PDF Viewer PCF control using Mozilla pdf.js" control-type="standard">
+    <external-service-usage enabled="false">
+    </external-service-usage>
+    <!-- Core bound source property: accepts base64, data URI, URL, or Dataverse Web API path -->
+    <property name="PdfSource" display-name-key="PdfSource_Display_Key" description-key="Base64 encoded PDF, data URI, or document URL" of-type="Multiple" usage="bound" required="true" />
+    <!-- Configuration inputs -->
+    <property name="Zoom" display-name-key="Zoom_Display_Key" description-key="Zoom mode (page-width, page-fit, auto) or scale factor" of-type="SingleLine.Text" usage="input" required="false" default-value="page-width" />
+    <property name="GoToPage" display-name-key="GoToPage_Display_Key" description-key="Target page number to navigate to" of-type="Whole.None" usage="input" required="false" />
+    <property name="Password" display-name-key="Password_Display_Key" description-key="Password for encrypted PDFs" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="ShowToolbar" display-name-key="ShowToolbar_Display_Key" description-key="Whether to display the navigation toolbar" of-type="TwoOptions" usage="input" required="false" default-value="true" />
+    <property name="AllowDownload" display-name-key="AllowDownload_Display_Key" description-key="Whether to allow downloading the PDF" of-type="TwoOptions" usage="input" required="false" default-value="true" />
+    <!-- Action & Annotation Tools Configuration (Visible & DisplayMode) -->
+    <property name="ShowHighlight" display-name-key="ShowHighlight_Display_Key" description-key="Whether to show the Highlight button" of-type="TwoOptions" usage="input" required="false" default-value="true" />
+    <property name="DisplayModeHighlight" display-name-key="DisplayModeHighlight_Display_Key" description-key="DisplayMode for Highlight: Edit, View, or Disabled" of-type="SingleLine.Text" usage="input" required="false" default-value="Edit" />
+    <property name="ShowDraw" display-name-key="ShowDraw_Display_Key" description-key="Whether to show the Draw ink annotation button" of-type="TwoOptions" usage="input" required="false" default-value="true" />
+    <property name="DisplayModeDraw" display-name-key="DisplayModeDraw_Display_Key" description-key="DisplayMode for Draw: Edit, View, or Disabled" of-type="SingleLine.Text" usage="input" required="false" default-value="Edit" />
+    <property name="ShowText" display-name-key="ShowText_Display_Key" description-key="Whether to show the Add text comment button" of-type="TwoOptions" usage="input" required="false" default-value="true" />
+    <property name="DisplayModeText" display-name-key="DisplayModeText_Display_Key" description-key="DisplayMode for Text Comment: Edit, View, or Disabled" of-type="SingleLine.Text" usage="input" required="false" default-value="Edit" />
+    <property name="ShowStamp" display-name-key="ShowStamp_Display_Key" description-key="Whether to show the Add or edit images button" of-type="TwoOptions" usage="input" required="false" default-value="true" />
+    <property name="DisplayModeStamp" display-name-key="DisplayModeStamp_Display_Key" description-key="DisplayMode for Images: Edit, View, or Disabled" of-type="SingleLine.Text" usage="input" required="false" default-value="Edit" />
+    <property name="ShowPrint" display-name-key="ShowPrint_Display_Key" description-key="Whether to show the Print PDF button" of-type="TwoOptions" usage="input" required="false" default-value="true" />
+    <property name="DisplayModePrint" display-name-key="DisplayModePrint_Display_Key" description-key="DisplayMode for Print: Edit, View, or Disabled" of-type="SingleLine.Text" usage="input" required="false" default-value="Edit" />
+    <property name="ShowDownload" display-name-key="ShowDownload_Display_Key" description-key="Whether to show the Download PDF button" of-type="TwoOptions" usage="input" required="false" default-value="true" />
+    <property name="DisplayModeDownload" display-name-key="DisplayModeDownload_Display_Key" description-key="DisplayMode for Download: Edit, View, or Disabled" of-type="SingleLine.Text" usage="input" required="false" default-value="Edit" />
+    <!-- State outputs -->
+    <property name="LoadStatus" display-name-key="LoadStatus_Display_Key" description-key="Status of PDF loading (Idle, Loading, Loaded, Error)" of-type="SingleLine.Text" usage="output" required="false" />
+    <property name="ErrorMessage" display-name-key="ErrorMessage_Display_Key" description-key="Details of the last encountered error, if any" of-type="SingleLine.Text" usage="output" required="false" />
+    <property name="EditedPdf" display-name-key="EditedPdf_Display_Key" description-key="Base64 encoded string of the edited PDF document, including all annotations and edits" of-type="Multiple" usage="output" required="false" />
+    <resources>
+      <code path="index.ts" order="1" />
+      <css path="css/pdf_viewer.css" order="1" />
+      <css path="css/PdfViewer.css" order="2" />
+    </resources>
+  </control>
+</manifest>

@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build and packager outputs
+**/out/
+**/bin/
+**/obj/
+**/.vs/
+*.binlog
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# User-specific settings
+*.suo
+*.user
+
+# Excluded solution packages (Sigma & DITPAM)
+*Sigma*.zip
+*DITPAM*.zip
+Solutions/**/PdfViewer_Sigma_*
+Solutions/**/PdfViewer_DITPAM_*

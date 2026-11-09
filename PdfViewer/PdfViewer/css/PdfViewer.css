@@ -1,0 +1,1119 @@
+/* Scoped CSS for Mozilla pdf.js PCF Control */
+.pdfv-root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  overflow: hidden;
+  position: relative;
+  background-color: #f3f4f6;
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  color: #1f2937;
+  box-sizing: border-box;
+}
+
+.pdfv-root *, .pdfv-root *::before, .pdfv-root *::after {
+  box-sizing: border-box;
+}
+
+/* Toolbar */
+.pdfv-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  background-color: #323639;
+  border-bottom: 1px solid #202124;
+  min-height: 44px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+  flex-shrink: 0;
+  user-select: none;
+  gap: 8px;
+  flex-wrap: wrap;
+  color: #f1f3f4;
+}
+
+.pdfv-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pdfv-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  min-width: 32px;
+  padding: 0 8px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #e8eaed;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.pdfv-btn:hover:not(:disabled) {
+  background-color: #474a4d;
+  color: #ffffff;
+}
+
+.pdfv-btn:active:not(:disabled) {
+  background-color: #202124;
+}
+
+.pdfv-btn:focus-visible {
+  outline: 2px solid #8ab4f8;
+  outline-offset: 1px;
+}
+
+.pdfv-btn:disabled,
+.pdfv-btn.pdfv-btn-disabled {
+  opacity: 0.35 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+.pdfv-btn.pdfv-btn-view {
+  opacity: 0.55 !important;
+  cursor: default !important;
+  pointer-events: none !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.pdfv-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.pdfv-btn-active {
+  background-color: #1a73e8 !important;
+  color: #ffffff !important;
+  border-color: #1a73e8 !important;
+}
+
+/* Page Navigation */
+.pdfv-page-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #e8eaed;
+}
+
+.pdfv-page-input {
+  width: 44px;
+  height: 28px;
+  padding: 0 4px;
+  border: 1px solid #5f6368;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 13px;
+  color: #ffffff;
+  background-color: #202124;
+}
+
+.pdfv-page-input:focus {
+  outline: none;
+  border-color: #8ab4f8;
+  box-shadow: 0 0 0 1px #8ab4f8;
+}
+
+.pdfv-page-total {
+  margin-left: 2px;
+  font-variant-numeric: tabular-nums;
+  color: #e8eaed;
+}
+
+/* Zoom Dropdown / Selector */
+.pdfv-zoom-select {
+  height: 28px;
+  padding: 0 6px;
+  border: 1px solid #5f6368;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #ffffff;
+  background-color: #202124;
+  cursor: pointer;
+}
+
+.pdfv-zoom-select:focus {
+  outline: none;
+  border-color: #8ab4f8;
+}
+
+.pdfv-toolbar-divider {
+  width: 1px;
+  height: 20px;
+  background-color: #5f6368;
+  margin: 0 4px;
+}
+
+/* Viewer Wrapper */
+.pdfv-viewer-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 0%;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  overflow: hidden;
+}
+
+/* Viewer Main Viewport Area */
+.pdfv-viewer-main {
+  position: relative;
+  flex: 1 1 0%;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Main Viewport Container */
+.pdfv-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  background-color: #525659; /* Standard neutral PDF reader backdrop */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* pdfjs pdfViewer class container override inside .pdfv-container */
+.pdfv-container .pdfViewer {
+  padding-bottom: 24px;
+}
+
+.pdfv-container .pdfViewer .page {
+  margin: 12px auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  border: none;
+  background-color: #ffffff;
+}
+
+/* Horizontal Scrolling Spacing (Tidy layout matching Mozilla viewer) */
+.pdfv-container .pdfViewer.scrollHorizontal {
+  white-space: nowrap !important;
+  padding: 16px 20px 24px 20px !important;
+  display: inline-block !important;
+}
+
+.pdfv-container .pdfViewer.scrollHorizontal .page {
+  display: inline-block !important;
+  vertical-align: middle !important;
+  margin: 12px 14px !important;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+.pdfv-container .pdfViewer.scrollHorizontal .spread {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  vertical-align: middle !important;
+  gap: 18px !important;
+  margin: 12px 14px !important;
+}
+
+/* Wrapped Scrolling Spacing */
+.pdfv-container .pdfViewer.scrollWrapped {
+  padding: 16px 20px 24px 20px !important;
+  text-align: center !important;
+}
+
+.pdfv-container .pdfViewer.scrollWrapped .page,
+.pdfv-container .pdfViewer.scrollWrapped .spread {
+  display: inline-block !important;
+  vertical-align: middle !important;
+  margin: 14px 12px !important;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Page Spreads Spacing (Odd Spreads & Even Spreads) */
+.pdfv-container .pdfViewer .spread {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 18px !important;
+  margin: 14px auto !important;
+}
+
+.pdfv-container .pdfViewer .spread .page,
+.pdfv-container .pdfViewer .spread .dummyPage {
+  margin: 0 9px !important;
+}
+
+/* Critical Fix: Mozilla PDF.js AnnotationEditor DOM expects content-box sizing.
+   Global border-box caused ResizeObserver on StampEditor to loop and continuously shrink images. */
+.pdfv-container .pdfViewer .annotationEditorLayer,
+.pdfv-container .pdfViewer .annotationEditorLayer *,
+.pdfv-container .pdfViewer .annotationEditorLayer :is(.freeTextEditor, .inkEditor, .stampEditor),
+.pdfv-container .pdfViewer .annotationEditorLayer :is(.freeTextEditor, .inkEditor, .stampEditor) * {
+  box-sizing: content-box !important;
+}
+
+.pdfv-container .pdfViewer .annotationEditorLayer :is(.freeTextEditor, .inkEditor, .stampEditor) > .resizers > .resizer {
+  box-sizing: border-box !important;
+}
+
+/* Remove Alt Text button on inserted images */
+.pdfv-container .pdfViewer .annotationEditorLayer .altText,
+.annotationEditorLayer .altText {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+}
+
+/* ==========================================================================
+   Text Selection & Layer Interaction (Enables Text Highlighting & Copy/Paste in Power Apps)
+   ========================================================================== */
+
+/* 1. Force selectable text: Power Apps containers default to user-select: none.
+      This explicitly restores full text selection for PDF pages and text layer elements. */
+.pdfv-container,
+.pdfv-container .pdfViewer,
+.pdfv-container .pdfViewer .page,
+.pdfv-container .pdfViewer .textLayer,
+.pdfv-container .pdfViewer .textLayer :is(span, br) {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+}
+
+/* 2. EndOfContent marker must not capture text selection */
+.pdfv-container .pdfViewer .textLayer .endOfContent {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+
+/* 3. Mozilla PDF.js coordinate calculations require standard content-box sizing */
+.pdfv-container .pdfViewer .page,
+.pdfv-container .pdfViewer .canvasWrapper,
+.pdfv-container .pdfViewer .textLayer,
+.pdfv-container .pdfViewer .textLayer * {
+  box-sizing: content-box !important;
+}
+
+/* 4. Text layer must accept pointer events and display the I-beam text selection cursor */
+.pdfv-container .pdfViewer .textLayer {
+  pointer-events: auto !important;
+  cursor: text !important;
+  z-index: 2 !important;
+}
+
+.pdfv-container .pdfViewer .textLayer :is(span, br) {
+  pointer-events: auto !important;
+  cursor: text !important;
+}
+
+/* 5. Clear, high-contrast text selection highlight */
+.pdfv-container .pdfViewer .textLayer ::selection {
+  background: #005fb8 !important;
+  color: transparent !important;
+}
+
+.pdfv-container .pdfViewer .textLayer ::-moz-selection {
+  background: #005fb8 !important;
+  color: transparent !important;
+}
+
+.pdfv-container .pdfViewer .textLayer br::selection {
+  background: transparent !important;
+}
+
+.pdfv-container .pdfViewer .textLayer br::-moz-selection {
+  background: transparent !important;
+}
+
+/* 6. When NOT in active annotation drawing/stamping mode, ensure the full-page annotationEditorLayer
+      passes through pointer events down to the textLayer so text can be selected seamlessly */
+.pdfv-root:not(.pdfv-annotating) .pdfv-container .pdfViewer .annotationEditorLayer:not(.freeTextEditing):not(.inkEditing):not(.stampEditing) {
+  pointer-events: none !important;
+}
+
+/* 7. Existing annotation items (ink, text comments, stamps) remain directly clickable */
+.pdfv-container .pdfViewer .annotationEditorLayer :is(.freeTextEditor, .inkEditor, .stampEditor) {
+  pointer-events: auto !important;
+}
+
+/* 8. When in active annotation mode, enable full pointer events for drawing/placing */
+.pdfv-root.pdfv-annotating .pdfv-container .pdfViewer .annotationEditorLayer {
+  pointer-events: auto !important;
+}
+
+/* Placeholder (Neutral 'No Document' state) */
+.pdfv-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  color: #6b7280;
+  background-color: #f9fafb;
+  text-align: center;
+  padding: 24px;
+  z-index: 20;
+}
+
+.pdfv-placeholder-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 12px;
+  color: #9ca3af;
+}
+
+.pdfv-placeholder-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+.pdfv-placeholder-desc {
+  font-size: 13px;
+  color: #6b7280;
+  max-width: 320px;
+}
+
+/* Loading Overlay */
+.pdfv-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.82);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  backdrop-filter: blur(2px);
+}
+
+.pdfv-spinner {
+  width: 38px;
+  height: 38px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: pdfv-spin 0.8s linear infinite;
+  margin-bottom: 12px;
+}
+
+@keyframes pdfv-spin {
+  to { transform: rotate(360deg); }
+}
+
+.pdfv-loading-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+/* Error Banner / Overlay */
+.pdfv-error-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  padding: 24px;
+  text-align: center;
+  z-index: 40;
+}
+
+.pdfv-error-icon {
+  width: 48px;
+  height: 48px;
+  color: #dc2626;
+  margin-bottom: 12px;
+}
+
+.pdfv-error-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #991b1b;
+  margin-bottom: 6px;
+}
+
+.pdfv-error-message {
+  font-size: 13px;
+  color: #4b5563;
+  max-width: 400px;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+/* Find Bar (Floating Overlay like standard Ctrl+F) */
+.pdfv-findbar {
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background-color: #323639;
+  border: 1px solid #484b4f;
+  border-radius: 6px;
+  z-index: 35;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+  color: #e8eaed;
+  flex-wrap: nowrap;
+}
+
+.pdfv-find-input {
+  height: 28px;
+  padding: 0 8px;
+  border: 1px solid #5f6368;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #ffffff;
+  background-color: #202124;
+  min-width: 180px;
+}
+
+.pdfv-find-input:focus {
+  outline: none;
+  border-color: #8ab4f8;
+  box-shadow: 0 0 0 1px #8ab4f8;
+}
+
+.pdfv-find-count {
+  font-size: 12px;
+  color: #bdc1c6;
+  margin: 0 4px;
+  font-variant-numeric: tabular-nums;
+  min-width: 50px;
+}
+
+.pdfv-find-nomatch {
+  color: #f28b82;
+  font-weight: 500;
+}
+
+.pdfv-find-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #e8eaed;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Sidebar */
+.pdfv-sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 210px;
+  height: 100%;
+  background-color: #282a2d;
+  border-right: 1px solid #202124;
+  z-index: 5;
+  flex-shrink: 0;
+  box-shadow: 1px 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.pdfv-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-bottom: 1px solid #202124;
+  background-color: #323639;
+}
+
+.pdfv-sidebar-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e8eaed;
+}
+
+.pdfv-sidebar-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.pdfv-thumbnail-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.15s;
+  outline: none;
+}
+
+.pdfv-thumbnail-item:hover {
+  background-color: #3c4043;
+}
+
+.pdfv-thumbnail-item:focus-visible {
+  outline: 2px solid #8ab4f8;
+}
+
+.pdfv-thumbnail-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 90px;
+  min-height: 120px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  border: 1px solid #5f6368;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.pdfv-thumbnail-placeholder {
+  font-size: 14px;
+  color: #5f6368;
+  font-weight: 500;
+}
+
+.pdfv-thumbnail-canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.pdfv-thumbnail-label {
+  font-size: 11px;
+  color: #bdc1c6;
+  margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.pdfv-thumbnail-active .pdfv-thumbnail-preview {
+  border: 2px solid #8ab4f8;
+  box-shadow: 0 0 0 1px #8ab4f8, 0 2px 6px rgba(138, 180, 248, 0.4);
+}
+
+.pdfv-thumbnail-active .pdfv-thumbnail-label {
+  font-weight: 600;
+  color: #8ab4f8;
+}
+
+/* Dropdown Menu (Secondary Toolbar) */
+.pdfv-dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.pdfv-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  background-color: #2b2e31;
+  border: 1px solid #44474a;
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  min-width: 220px;
+  z-index: 60;
+  padding: 4px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.pdfv-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 12px;
+  border: none;
+  background-color: transparent;
+  color: #e8eaed;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.12s;
+}
+
+.pdfv-menu-item:hover {
+  background-color: #3c4043;
+  color: #ffffff;
+}
+
+.pdfv-menu-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: #bdc1c6;
+}
+
+.pdfv-menu-icon svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.pdfv-menu-label {
+  flex: 1;
+}
+
+.pdfv-menu-divider {
+  height: 1px;
+  background-color: #44474a;
+  margin: 4px 0;
+}
+
+.pdfv-menu-active {
+  background-color: #383e47;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.pdfv-menu-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.pdfv-menu-check svg {
+  width: 14px;
+  height: 14px;
+  fill: #8ab4f8;
+}
+
+/* Document Properties Modal */
+.pdfv-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(2px);
+}
+
+.pdfv-modal-box {
+  background-color: #282a2d;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  width: 90%;
+  max-width: 520px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #44474a;
+  color: #e8eaed;
+}
+
+.pdfv-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #44474a;
+  background-color: #323639;
+}
+
+.pdfv-modal-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.pdfv-modal-body {
+  padding: 16px;
+  overflow-y: auto;
+  font-size: 13px;
+  color: #e8eaed;
+}
+
+.pdfv-props-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pdfv-props-table td {
+  padding: 6px 4px;
+  vertical-align: top;
+}
+
+.pdfv-props-label {
+  width: 38%;
+  font-weight: 600;
+  color: #9aa0a6;
+}
+
+.pdfv-props-val {
+  color: #ffffff;
+  word-break: break-word;
+}
+
+.pdfv-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px 16px;
+  border-top: 1px solid #44474a;
+  background-color: #323639;
+}
+
+.pdfv-btn-primary {
+  background-color: #1a73e8 !important;
+  color: #ffffff !important;
+  font-weight: 500;
+  padding: 0 16px;
+  border-radius: 4px;
+}
+
+.pdfv-btn-primary:hover {
+  background-color: #1765cc !important;
+}
+
+/* Annotation Properties Sub-Toolbar */
+.pdfv-annotation-bar {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  background-color: #282a2d;
+  border-bottom: 1px solid #1c1d1f;
+  height: 38px !important;
+  min-height: 38px !important;
+  max-height: 38px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 9;
+  flex-shrink: 0;
+  user-select: none;
+  gap: 8px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+  color: #e8eaed;
+  font-size: 13px;
+  transition: all 0.2s ease-in-out;
+}
+
+.pdfv-annotation-bar.pdfv-hidden,
+.pdfv-annotation-bar[hidden] {
+  display: none !important;
+}
+
+.pdfv-ann-group {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 28px !important;
+  min-height: 28px !important;
+  max-height: 28px !important;
+  line-height: 28px !important;
+  gap: 6px;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.pdfv-ann-thickness-group {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 28px !important;
+  min-height: 28px !important;
+  max-height: 28px !important;
+  line-height: 28px !important;
+  gap: 6px;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.pdfv-ann-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0 8px;
+  border-radius: 11px;
+  background-color: #3c4043;
+  color: #e8eaed;
+  line-height: 22px;
+  box-sizing: border-box;
+}
+
+.pdfv-badge-highlight {
+  background-color: rgba(255, 255, 0, 0.2);
+  color: #fffb8f;
+  border: 1px solid rgba(255, 255, 0, 0.4);
+}
+
+.pdfv-badge-draw {
+  background-color: rgba(26, 115, 232, 0.2);
+  color: #8ab4f8;
+  border: 1px solid rgba(26, 115, 232, 0.4);
+}
+
+.pdfv-badge-text {
+  background-color: rgba(52, 168, 83, 0.2);
+  color: #81c995;
+  border: 1px solid rgba(52, 168, 83, 0.4);
+}
+
+.pdfv-ann-label {
+  font-size: 12px;
+  color: #9aa0a6;
+  white-space: nowrap;
+  line-height: 28px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.pdfv-ann-divider {
+  width: 1px;
+  height: 20px;
+  background-color: #44474a;
+  margin: 0 4px;
+  flex-shrink: 0;
+}
+
+.pdfv-ann-swatches {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  gap: 4px;
+}
+
+.pdfv-ann-swatch {
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  min-height: 18px !important;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  padding: 0;
+  box-sizing: border-box !important;
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+
+.pdfv-ann-swatch:hover {
+  transform: scale(1.15);
+  border-color: #ffffff;
+}
+
+.pdfv-ann-swatch.pdfv-swatch-active {
+  transform: scale(1.2);
+  border-color: #ffffff;
+  box-shadow: 0 0 0 2px #8ab4f8;
+}
+
+.pdfv-ann-custom-color {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #3c4043;
+  margin-left: 2px;
+  border: 1px solid #5f6368;
+  box-sizing: border-box !important;
+}
+
+.pdfv-ann-color-input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.pdfv-ann-color-icon svg {
+  width: 14px;
+  height: 14px;
+  fill: #e8eaed;
+}
+
+/* Bulletproof Range Slider Reset & Styling for Canvas Apps */
+.pdfv-ann-slider {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  width: 110px !important;
+  height: 6px !important;
+  min-height: 6px !important;
+  max-height: 6px !important;
+  border: none !important;
+  border-radius: 3px !important;
+  background: #5f6368 !important;
+  outline: none !important;
+  cursor: pointer !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+  vertical-align: middle !important;
+  display: inline-block !important;
+}
+
+.pdfv-ann-slider:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 1px #8ab4f8 !important;
+}
+
+/* WebKit Track & Thumb */
+.pdfv-ann-slider::-webkit-slider-runnable-track {
+  width: 100% !important;
+  height: 6px !important;
+  cursor: pointer !important;
+  background: #5f6368 !important;
+  border-radius: 3px !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.pdfv-ann-slider::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 50% !important;
+  background: #8ab4f8 !important;
+  cursor: pointer !important;
+  border: 2px solid #282a2d !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+  margin-top: -5px !important; /* Centers 16px thumb on 6px track */
+  transition: background-color 0.15s, transform 0.15s !important;
+  box-sizing: border-box !important;
+}
+
+.pdfv-ann-slider::-webkit-slider-thumb:hover {
+  background: #aecbfa !important;
+  transform: scale(1.15) !important;
+}
+
+/* Firefox Track & Thumb */
+.pdfv-ann-slider::-moz-range-track {
+  width: 100% !important;
+  height: 6px !important;
+  cursor: pointer !important;
+  background: #5f6368 !important;
+  border-radius: 3px !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.pdfv-ann-slider::-moz-range-thumb {
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 50% !important;
+  background: #8ab4f8 !important;
+  cursor: pointer !important;
+  border: 2px solid #282a2d !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+  box-sizing: border-box !important;
+}
+
+.pdfv-ann-slider::-moz-range-thumb:hover {
+  background: #aecbfa !important;
+}
+
+/* Value pill display */
+.pdfv-ann-val {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  font-variant-numeric: tabular-nums !important;
+  color: #e8eaed !important;
+  background-color: #3c4043 !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  border: 1px solid #5f6368 !important;
+  min-width: 36px !important;
+  text-align: center !important;
+  line-height: 16px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+}
+
+.pdfv-ann-spacer {
+  flex: 1 1 auto;
+}
+
+.pdfv-ann-close {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;
+  min-height: 24px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  color: #9aa0a6 !important;
+  cursor: pointer !important;
+  border-radius: 4px !important;
+  flex-shrink: 0 !important;
+  transition: background-color 0.15s, color 0.15s !important;
+}
+
+.pdfv-ann-close:hover {
+  background-color: #44474a !important;
+  color: #ffffff !important;
+}
+
+.pdfv-ann-close svg {
+  width: 14px !important;
+  height: 14px !important;
+  fill: currentColor !important;
+  pointer-events: none !important;
+}
